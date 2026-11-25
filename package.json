@@ -1,0 +1,21 @@
+{
+  "name": "agent",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently --kill-others --names backend,frontend \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "dev:backend": "./gradlew :backend:bootRun",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "npm run build --workspace frontend",
+    "build:backend": "./gradlew :backend:build",
+    "lint": "npm run lint --workspace frontend",
+    "test:backend": "./gradlew :backend:test"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.7"
+  }
+}
